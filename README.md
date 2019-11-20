@@ -20,7 +20,7 @@ The code of the function error_ellipse.m was inspired by the Matlab source code 
 
 ### Data sets
 
-For the reproduction of our analysis all necessary data is included as MAT files. However, for reasons of good data governance this does not include the original NIFTI files and meta data variables (e.g. age or gender). For access to the original data sets and meta data see [http://www.mrc-cbu.cam.ac.uk/datasets/camcan/](http://www.mrc-cbu.cam.ac.uk/datasets/camcan/) and [https://www.humanconnectome.org/study/hcp-young-adult/document/1200-subjects-data-release](https://www.humanconnectome.org/study/hcp-young-adult/document/1200-subjects-data-release).
+For the reproduction of our analysis all necessary data is included as MAT files. However, for reasons of good data governance this does not include the original NIFTI files and meta data variables (e.g. age or sex). For access to the original data sets and meta data see [http://www.mrc-cbu.cam.ac.uk/datasets/camcan/](http://www.mrc-cbu.cam.ac.uk/datasets/camcan/) and [https://www.humanconnectome.org/study/hcp-young-adult/document/1200-subjects-data-release](https://www.humanconnectome.org/study/hcp-young-adult/document/1200-subjects-data-release).
 
 To reproduce the brain surface plots of panel b-d of figure 3 please include a lh.aparc.annot and lh.pial file.
 
