@@ -2,7 +2,6 @@
 %
 % Licence: CC-BY
 %
-
 % Jona Carmon & Yujiang Wang, October 2019 
 % Newcastle University, School of Computing, CNNP Lab (www.cnnp-lab.com)
 
