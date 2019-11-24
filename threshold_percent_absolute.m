@@ -27,21 +27,25 @@ function [thresholded_matrix, thresholded_binarized_matrix] = threshold_percent_
 matrix(1:size(matrix,1)+1:end) = 0; %set diagonal to 0 
 matrix= abs(matrix); %take absolute value
 
-%compute thresholded matrix 
-w = squareform(matrix); %?, 
+%compute thresholded matrix
 
-%what is w? maybe a different name will make it clearer
-[s,sid]=sort(w,'descend');
-t = floor(length(s)*threshold);%top threshold kept
-if t==0; t=1; end 
-s(t:end)=0; %set values below threshold to 0?
+%transform matrix in vector
+matrix_as_vector = squareform(matrix); 
 
-w(sid)=s; %?
+%sort vector
+[sorted_vector,sorted_index]=sort(matrix_as_vector,'descend');
+
+%compute index of threshold. Below this index the correlations are set to 0
+threshold_index = floor(length(sorted_vector)*threshold);
+if threshold_index==0; threshold_index=1; end 
+%set values below threshold to 0
+sorted_vector(threshold_index:end)=0; 
+matrix_as_vector(sorted_index)=sorted_vector; 
 
 
 
-thresholded_matrix = squareform(w);
-% put diagnonals back in again (for network measures)
+thresholded_matrix = squareform(matrix_as_vector);
+%put diagnonals back in again (for network measures)
 thresholded_matrix(1:size(thresholded_matrix,1)+1:end)=1; 
 
 
@@ -49,6 +53,7 @@ thresholded_matrix(1:size(thresholded_matrix,1)+1:end)=1;
 %compute thresholded and binarized matrix
 thresholded_binarized_matrix = thresholded_matrix;
 thresholded_binarized_matrix(thresholded_binarized_matrix>0) = 1;
+
 
 
 
