@@ -1,6 +1,6 @@
 # Reliability and comparability of human brain structural covariance networks.
 
-Supporting Matlab code for the preprint “Reliability and comparability of human brain structural covariance networks” uploaded to arXiv (link).
+Supporting Matlab code for the preprint “Reliability and comparability of human brain structural covariance networks” uploaded to arXiv ([https://arxiv.org/abs/1911.12755](https://arxiv.org/abs/1911.12755)).
 
 
 ## Reproducing the analysis
