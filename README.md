@@ -3,6 +3,7 @@
 Supporting Matlab code for the preprint “Reliability and comparability of human brain structural covariance networks” uploaded to arXiv ([https://arxiv.org/abs/1911.12755](https://arxiv.org/abs/1911.12755)).
 
 
+
 ## Reproducing the analysis
 
 The intention of this code library is to make our analysis transparent and reproducible. However, the provided code is not intend to be used as a software package for other datasets.
@@ -20,7 +21,7 @@ The code of the function error_ellipse.m was inspired by the Matlab source code 
 
 ### Data sets
 
-For the reproduction of our analysis all necessary data is included as MAT files. However, for reasons of good data governance this does not include the original NIFTI files and meta data variables (e.g. age or sex). For access to the original data sets and meta data see [http://www.mrc-cbu.cam.ac.uk/datasets/camcan/](http://www.mrc-cbu.cam.ac.uk/datasets/camcan/) and [https://www.humanconnectome.org/study/hcp-young-adult/document/1200-subjects-data-release](https://www.humanconnectome.org/study/hcp-young-adult/document/1200-subjects-data-release).
+For the reproduction of our analysis all necessary data is included as MAT files. However, for reasons of good data governance this does not include the original NIFTI files and meta data variables (e.g. age or gender). For access to the original data sets and meta data see [http://www.mrc-cbu.cam.ac.uk/datasets/camcan/](http://www.mrc-cbu.cam.ac.uk/datasets/camcan/) and [https://www.humanconnectome.org/study/hcp-young-adult/document/1200-subjects-data-release](https://www.humanconnectome.org/study/hcp-young-adult/document/1200-subjects-data-release).
 
 To reproduce the brain surface plots of panel b-d of figure 3 please include a lh.aparc.annot and lh.pial file.
 

@@ -2,7 +2,7 @@
 %
 % Licence: CC-BY
 % 
-% Jona Carmon & Yujiang Wang, October 2019 
+% Jona Carmon & Yujiang Wang, April 2020 
 % Newcastle University, School of Computing, CNNP Lab (www.cnnp-lab.com)
 
 
@@ -30,7 +30,7 @@ addpath([fileparts(pwd),'\BCT'])
 %    CamCAN.thick,threshold_scan);
 % save('pvalue_network_measures.mat','raw_pvalue', 'thresholds_pvalue', 'thresholds_binarized_pvalue','threshold_scan')
 
-load('pvalue_network_measures.mat')
+load('pvalue_network_measures_site.mat')
 
 %panel a-e
 visualise_pvalue_all_network_measures(threshold_scan,raw_pvalue, thresholds_pvalue,thresholds_binarized_pvalue,...
@@ -318,5 +318,284 @@ clear
 load('data_freesurfer_no_site_correction.mat')
 coeff_variation(CamCAN.thick,CamCAN.vol,CamCAN.area,[0.9 0 0],{'Freesurfer 6.0'})
 coeff_variation(CamCAN53.thick,CamCAN53.vol,CamCAN53.area,[0.9 0.5 0.1],{'Freesurfer 5.3'})
+
+
+
+%% 
+% supp
+% quantify differences on brain surface / compare thickness, volume, surface
+% area
+
+%access functions of main results
+addpath(fileparts(pwd))
+%access FSmatlab functions
+addpath([fileparts(pwd),'\FSmatlab'])
+
+
+
+clear
+load('data_site_comparison') 
+
+% for plots on the brain surface include a lh.pial and lh.aparc.annot file
+% in the supplementary folder & use the following function:
+brain_surface_plot_all(CamCAN.thick, Hcp.thick, CamCAN.vol, Hcp.vol, ...
+    CamCAN.area, Hcp.area,{'Site comparison HCP vs. CamCAN'})
+
+
+
+clear
+load('data_scanner') 
+
+% for plots on the brain surface include a lh.pial and lh.aparc.annot file
+% in the supplementary folder & use the following function:
+brain_surface_plot_all(HcpScan.thick, HcpRescan.thick, HcpScan.vol, ...
+    HcpRescan.vol, HcpScan.area, HcpRescan.area,{'HCP scan vs. rescan'})
+
+
+
+clear
+load('data_freesurfer') 
+
+% for plots on the brain surface include a lh.pial and lh.aparc.annot file
+% in the supplementary folder & use the following function:
+brain_surface_plot_all(CamCAN.thick, CamCAN53.thick, CamCAN.vol,...
+    CamCAN53.vol, CamCAN.area, CamCAN53.area,{'Cam-CAN Freesurfer version 5.3 vs 6.0'})
+
+
+
+
+%%
+% supp
+% Site comparison NKI and Cam-CAN 6.0
+
+%access functions of main results
+addpath(fileparts(pwd))
+%access FSmatlab functions
+addpath([fileparts(pwd),'\FSmatlab'])
+%access BCT functions
+addpath([fileparts(pwd),'\BCT'])
+
+load('data_site_comparison_nki_camcan.mat')
+
+
+
+% CamCAN vs NKI for Fig 3
+compare_structural_covariance(CamCAN.thick, NKI.thick, [0.1 0.9 0.1],...
+    [0.5 0.5 0.5],{'Cam-CAN (FS 6.0)','NKI'})
+
+% for plots on the brain surface include a lh.pial and lh.aparc.annot file
+% in the supplmentary folder & use the following function:
+brain_surface_plot(CamCAN.thick, NKI.thick)
+
+
+
+% CamCAN vs NKI for Fig 4
+
+load('pvalue_network_measures_camcan60_nki.mat') 
+
+% threshold_scan=0.025:0.025:0.35;
+% [raw_pvalue, thresholds_pvalue, thresholds_binarized_pvalue] = ...
+%     permutation_test_all_measures(NKI.thick,CamCAN.thick,threshold_scan);
+% save('pvalue_network_measures_camcan60_nki.mat','raw_pvalue', 'thresholds_pvalue', ...
+%     'thresholds_binarized_pvalue','threshold_scan')
+
+visualise_pvalue_network_measures(threshold_scan,raw_pvalue, thresholds_pvalue,thresholds_binarized_pvalue,...
+    ([0.1 0.9 0.1]+[0.5 0.5 0.5])/2)
+
+
+
+% CamCAN vs NKI for Fig 5
+
+axlimits=[0 0.25 0 4];
+compare_morph_measures(CamCAN.thick, NKI.thick, CamCAN.vol,...
+    NKI.vol, CamCAN.area, NKI.area,...
+    ([0.5 0.5 0.5]+[0.1 0.9 0.1])/2, axlimits,{'Cam-CAN (FS 6.0) and NKI'})
+
+
+
+%%
+% supp
+% Site comparison NKI and Cam-CAN 53
+
+%access functions of main results
+addpath(fileparts(pwd))
+%access FSmatlab functions
+addpath([fileparts(pwd),'\FSmatlab'])
+%access BCT functions
+addpath([fileparts(pwd),'\BCT'])
+
+load('data_site_comparison_nki_camcan53.mat')
+
+
+
+% CamCAN vs NKI for Fig 3
+compare_structural_covariance(CamCAN.thick, NKI.thick, [0.9 0.5 0.1],...
+    [0.5 0.5 0.5],{'Cam-CAN (FS 5.3)','NKI'})
+
+% for plots on the brain surface include a lh.pial and lh.aparc.annot file
+% in the supplmentary folder & use the following function:
+brain_surface_plot(CamCAN.thick, NKI.thick)
+
+
+
+% CamCAN vs NKI for Fig 4
+
+load('pvalue_network_measures_camcan53_nki.mat') 
+
+% threshold_scan=0.025:0.025:0.35;
+% [raw_pvalue, thresholds_pvalue, thresholds_binarized_pvalue] = ...
+%     permutation_test_all_measures(NKI.thick,CamCAN.thick,threshold_scan);
+% save('pvalue_network_measures_camcan53_nki.mat','raw_pvalue', 'thresholds_pvalue', ...
+%     'thresholds_binarized_pvalue','threshold_scan')
+
+visualise_pvalue_network_measures(threshold_scan,raw_pvalue, thresholds_pvalue,thresholds_binarized_pvalue,...
+    ([0.9 0.5 0.1]+[0.5 0.5 0.5])/2)
+
+
+
+% CamCAN vs NKI for Fig 5
+
+axlimits=[0 0.25 0 4];
+compare_morph_measures(CamCAN.thick, NKI.thick, CamCAN.vol,...
+    NKI.vol, CamCAN.area, NKI.area,...
+    ([0.5 0.5 0.5]+[0.9 0.5 0.1])/2, axlimits,{'Cam-CAN (FS 5.3) and NKI'})
+
+
+
+%%
+% supp
+% Scanner session BNU test retest 
+
+%access functions of main results
+addpath(fileparts(pwd))
+%access FSmatlab functions
+addpath([fileparts(pwd),'\FSmatlab'])
+
+
+
+clear
+load('data_scanner_bnu.mat')
+
+
+
+% BNU test vs retest for Fig 3 
+compare_structural_covariance(BnuScan.thick, BnuRescan.thick,[0.5 0.5 0.5],...
+    [0.5 0.5 0.5],{'BNU scan','BNU rescan'})
+
+% for plots on the brain surface include a lh.pial and lh.aparc.annot file
+% in the supplementary folder & use the following function:
+brain_surface_plot(BnuScan.thick, BnuRescan.thick)
+
+
+
+% BNU test vs retest for Fig 5 
+axlimits=[0 0.25 0 4];
+compare_morph_measures(BnuScan.thick, BnuRescan.thick, BnuScan.vol,...
+    BnuRescan.vol, BnuScan.area, BnuRescan.area,...
+    ([0.5 0.5 0.5]+[0.5 0.5 0.5])/2, axlimits,{'BNU scan and rescan'})
+
+
+
+
+%%
+% supp
+% HCP vs HCP downsampled  
+
+%access functions of main results
+addpath(fileparts(pwd))
+%access FSmatlab functions
+addpath([fileparts(pwd),'\FSmatlab'])
+
+
+
+clear
+load('data_hcp_downsampled.mat')
+
+
+
+% HCP vs HCP 1mm for Fig 3 
+compare_structural_covariance(HCP.thick, HCP1mm.thick,[0.9 0.9 0.1],...
+    [0.5 0.5 0.5],{'HCP normal','HCP 1mm'})
+
+% for plots on the brain surface include a lh.pial and lh.aparc.annot file
+% in the supplementary folder & use the following function:
+brain_surface_plot(HCP.thick, HCP1mm.thick)
+
+
+% HCP vs HCP 1mm for Fig 5 
+axlimits=[0 0.25 0 4];
+compare_morph_measures(HCP.thick, HCP1mm.thick, HCP.vol,...
+    HCP1mm.vol, HCP.area, HCP1mm.area,...
+    ([0.9 0.9 0.1]+[0.5 0.5 0.5])/2, axlimits,{'HCP normal vs HCP 1mm'})
+
+
+
+% HCP vs HCP 1.5mm for Fig 3 
+compare_structural_covariance(HCP.thick, HCP1_5mm.thick,[0.9 0.9 0.1],...
+    [0.5 0.5 0.5],{'HCP normal','HCP 1.5mm'})
+
+% for plots on the brain surface include a lh.pial and lh.aparc.annot file
+% in the supplementary folder & use the following function:
+brain_surface_plot(HCP.thick, HCP1_5mm.thick)
+
+
+% HCP vs HCP 1.5mm for Fig 5 
+axlimits=[0 0.25 0 4];
+compare_morph_measures(HCP.thick, HCP1_5mm.thick, HCP.vol,...
+    HCP1_5mm.vol, HCP.area, HCP1_5mm.area,...
+    ([0.9 0.9 0.1]+[0.5 0.5 0.5])/2, axlimits,{'HCP normal vs HCP 1.5mm'})
+
+
+
+% HCP vs HCP 2mm for Fig 3 
+compare_structural_covariance(HCP.thick, HCP2mm.thick,[0.9 0.9 0.1],...
+    [0.5 0.5 0.5],{'HCP normal','HCP 2mm'})
+
+% for plots on the brain surface include a lh.pial and lh.aparc.annot file
+% in the supplementary folder & use the following function:
+brain_surface_plot(HCP.thick, HCP2mm.thick)
+
+
+% HCP vs HCP 2mm for Fig 5 
+axlimits=[0 0.25 0 4];
+compare_morph_measures(HCP.thick, HCP2mm.thick, HCP.vol,...
+    HCP2mm.vol, HCP.area, HCP2mm.area,...
+    ([0.9 0.9 0.1]+[0.5 0.5 0.5])/2, axlimits,{'HCP normal vs HCP 2mm'})
+
+
+
+% Summary figure for all resolutions 
+diff_in_resolutions(HCP,HCP1mm, HCP1_5mm,HCP2mm)
+
+
+
+%%
+% supp
+% effect of number of subjects on comparability
+
+clear
+load('data_several_subjects_camcan.mat') % 228 subjects from Cam-CAN in age range 18-45
+
+
+
+number_of_subjects_effect_cmp(CamCAN_more.thick,CamCAN_more.vol,CamCAN_more.area, 110)
+
+
+
+%%
+% supp
+% effect of number of subjects on reliability
+
+clear
+
+%access functions of main results
+addpath(fileparts(pwd))
+
+load('data_scanner.mat') % (45 subjects)
+
+
+
+number_of_subjects_effect_rlb(HcpScan.thick,HcpScan.vol,HcpScan.area,...
+    HcpRescan.thick,HcpRescan.vol,HcpRescan.area, 45)
 
 

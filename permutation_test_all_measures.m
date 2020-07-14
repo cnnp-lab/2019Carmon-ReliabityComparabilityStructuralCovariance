@@ -8,12 +8,12 @@ function [raw_pvalue, thresholds_pvalue, thresholds_binarized_pvalue] = permutat
 % Arguments:
 % -DATA1 - double array; data set 1
 % -DATA1 - double array; data set 2
-% -THRESHOLDS - double array; thresholds of strongest correlations in
+% -THRESHOLDS - double array; thresholds of strongest correlations
 %
 % Returns:
-% -RAW_PVALUE - double array; p-value of the not thresholded matrix
-% -THRESHOLDS_PVALUE - double array; p-values for different thresholds
-% -THRESHOLDS_BINARIZED_PVALUE - p-value for different thresholds of
+% -RAW_PVALUE - struct; p-value of the not thresholded matrix
+% -THRESHOLDS_PVALUE - struct; p-values for different thresholds
+% -THRESHOLDS_BINARIZED_PVALUE - struct; p-value for different thresholds of
 % binrized matrices
 %
 % Dependencies: 
@@ -27,7 +27,7 @@ function [raw_pvalue, thresholds_pvalue, thresholds_binarized_pvalue] = permutat
 
 
 %set number of permutations
-number_permuations =1000;
+number_permuations = 1000;
 
 %get number of brain regions and subjects
 number_regions =size(data1,2);

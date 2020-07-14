@@ -2,7 +2,7 @@
 %
 % Licence: CC-BY
 %
-% Jona Carmon & Yujiang Wang, October 2019 
+% Jona Carmon & Yujiang Wang, April 2020 
 % Newcastle University, School of Computing, CNNP Lab (www.cnnp-lab.com)
 
 
@@ -75,18 +75,25 @@ addpath('BCT')
 %Compute the p-values on your device (will take some time) or load the
 %prerun p-values 
 
-% clear
-% load('data_site_comparison') 
-% 
+clear
+
+%panel a-d - network (site) comparison
+load('data_site_comparison') 
+
 % threshold_scan=0.025:0.025:0.35;
 % [raw_pvalue, thresholds_pvalue, thresholds_binarized_pvalue] = ...
 %     permutation_test_all_measures(Hcp.thick,CamCAN.thick,threshold_scan);
-% save('pvalue_network_measures.mat','raw_pvalue', 'thresholds_pvalue', ...
+% save('pvalue_network_measures_site.mat','raw_pvalue', 'thresholds_pvalue', ...
 %     'thresholds_binarized_pvalue','threshold_scan')
-load('pvalue_network_measures.mat')
+load('pvalue_network_measures_site.mat')
 
 visualise_pvalue_network_measures(threshold_scan,raw_pvalue, thresholds_pvalue,thresholds_binarized_pvalue,...
     ([0.1 0.9 0.5]+[0.7 0.8 0])/2)
+
+
+
+% panel e - various site efects 
+various_effects_pvalues
 
 
 
